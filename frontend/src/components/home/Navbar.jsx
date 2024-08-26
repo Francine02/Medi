@@ -1,9 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate();
 
     const toggleMenu = () => setIsOpen(!isOpen);
+
+    const handleLogin = () => navigate("/auth/login");
 
     return (
         <div className="flex justify-between items-center">
@@ -11,7 +15,7 @@ export function Navbar() {
 
             {/* Menu Desktop */}
             <div className="hidden sm:flex space-x-12 text-lg font-bold">
-                <button className="hover:opacity-70">Entrar</button>
+                <button onClick={handleLogin} className="hover:opacity-70">Entrar</button>
                 <button className="bg-black hover:bg-opacity-80 text-white px-4 py-2">Cadastre-se</button>
             </div>
 
@@ -22,7 +26,7 @@ export function Navbar() {
                 </button>
                 {isOpen && (
                     <div className="absolute top-16 right-4 bg-[#f0e9dd] shadow-lg rounded-md flex flex-col space-y-4 p-4 z-10 text-lg font-bold">
-                        <button className="hover:opacity-70">Entrar</button>
+                        <button onClick={handleLogin} className="hover:opacity-70">Entrar</button>
                         <button className="bg-black hover:bg-opacity-80 text-white px-4 py-2">Cadastre-se</button>
                     </div>
                 )}
