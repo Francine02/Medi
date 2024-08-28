@@ -1,8 +1,13 @@
 import bgImage from '../assets/6.png';
 import { Button } from '../components/form/Button';
 import { Input } from '../components/form/Input';
+import { useNavigate } from 'react-router-dom';
 
 export function Login() {
+    const navigate = useNavigate();
+
+    const handleRegister = () => navigate("/auth/register");
+
     return (
         <div className="bg-cover bg-no-repeat bg-center px-7 sm:px-12 lg:px-20 min-h-screen flex justify-center items-center" style={{ backgroundImage: `url(${bgImage})` }}>
             <div className='w-96 h-auto p-7 overflow-auto bg-[#fffcf2] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_1px_-6px_rgba(0,0,0,0.06),0px_24px_2px_-12px_rgba(0,0,0,0.06)]'>
@@ -14,7 +19,7 @@ export function Login() {
 
                     <Button/>
                 </form>
-                <p className='pt-10 text-center text-sm font-normal'>Não tem uma conta? <a className='text-[#8f5cd7] font-medium hover:opacity-85 cursor-pointer'>Cadastre-se</a></p>
+                <p className='pt-10 text-center text-sm font-normal'>Não tem uma conta? <a onClick={handleRegister} className='text-[#8f5cd7] font-medium hover:opacity-85 cursor-pointer'>Cadastre-se</a></p>
             </div>
         </div>
     )

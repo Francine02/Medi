@@ -1,4 +1,4 @@
-export function Input({ type, placeholder }) {
+export function Input({ type, placeholder, value, onChange }) {
     return (
         <div className="relative h-11 w-full min-w-[200px]">
             <input placeholder={placeholder} type={type}
