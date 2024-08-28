@@ -9,6 +9,8 @@ export function Navbar() {
 
     const handleLogin = () => navigate("/auth/login");
 
+    const handleRegister = () => navigate("/auth/register");
+
     return (
         <div className="flex justify-between items-center">
             <p className="text-xl sm:text-2xl py-1 font-black text-[#8f5cd7]">Medi</p>
@@ -16,7 +18,7 @@ export function Navbar() {
             {/* Menu Desktop */}
             <div className="hidden sm:flex space-x-12 text-lg font-bold">
                 <button onClick={handleLogin} className="hover:opacity-70">Entrar</button>
-                <button className="bg-black hover:bg-opacity-80 text-white px-4 py-2">Cadastre-se</button>
+                <button onClick={handleRegister} className="bg-black hover:bg-opacity-80 text-white px-4 py-2">Cadastre-se</button>
             </div>
 
             {/* Menu Hambúrguer para telas menores */}
@@ -27,7 +29,7 @@ export function Navbar() {
                 {isOpen && (
                     <div className="absolute top-16 right-4 bg-[#f0e9dd] shadow-lg rounded-md flex flex-col space-y-4 p-4 z-10 text-lg font-bold">
                         <button onClick={handleLogin} className="hover:opacity-70">Entrar</button>
-                        <button className="bg-black hover:bg-opacity-80 text-white px-4 py-2">Cadastre-se</button>
+                        <button onClick={handleRegister} className="bg-black hover:bg-opacity-80 text-white px-4 py-2">Cadastre-se</button>
                     </div>
                 )}
             </div>
