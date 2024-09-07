@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record MedicioneDTO(
+public record MedicineDTO(
     Long id,
     @NotBlank(message = "Nome não pode ser nulo")
     String name,
