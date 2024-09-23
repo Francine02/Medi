@@ -35,7 +35,7 @@ public class JwtToken {
     }
 
     // Extração de claims(informação) de um token
-    private <T> T extractClaim(String token, java.util.function.Function<Claims, T> claimsResolver) {
+    protected <T> T extractClaim(String token, java.util.function.Function<Claims, T> claimsResolver) {
         Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
         return claimsResolver.apply(claims);
     }
