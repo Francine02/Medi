@@ -1,6 +1,6 @@
 export function Footer() {
     return (
-        <div className="bg-[#8f5cd7] w-full mt-20 sm:mt-36 px-7 sm:px-12 lg:px-20 pt-10 text-white">
+        <div className="bg-[#8f5cd7] w-full mt-20 sm:mt-36 px-7 sm:px-12 lg:px-20 2xl:px-48 pt-10 text-white">
             <div className=" flex justify-between items-center">
                 <p className="text-xl sm:text-2xl font-black ">Medi</p>
 

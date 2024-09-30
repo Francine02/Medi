@@ -17,7 +17,7 @@ export function Navbar() {
 
             {/* Menu Desktop */}
             <div className="hidden sm:flex space-x-12 text-lg font-bold">
-                <button onClick={handleLogin} className="hover:opacity-70">Entrar</button>
+                <button onClick={handleLogin} className="bg-[#fffcf2] bg-opacity-30 hover:bg-opacity-80 text-black px-4 py-2">Entrar</button>
                 <button onClick={handleRegister} className="bg-black hover:bg-opacity-80 text-white px-4 py-2">Cadastre-se</button>
             </div>
 
