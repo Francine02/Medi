@@ -9,6 +9,8 @@ services:
       POSTGRES_DB: medi
     ports:
       - "5432:5432"
+    networks:
+      - app-network
 
   backend:
     build:
@@ -25,3 +27,9 @@ services:
       API_TOKEN_SECRET: 120987re
     depends_on:
       - db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
