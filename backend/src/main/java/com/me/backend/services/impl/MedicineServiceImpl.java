@@ -2,12 +2,16 @@ package com.me.backend.services.impl;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.me.backend.dtos.MedicineDTO;
 import com.me.backend.entities.Medicine;
+import com.me.backend.entities.User;
 import com.me.backend.mapper.MedicineMapper;
 import com.me.backend.repositories.MedicineRepository;
+import com.me.backend.repositories.UserRepository;
 import com.me.backend.services.MedicineService;
 
 import lombok.AllArgsConstructor;
@@ -17,12 +21,16 @@ import lombok.AllArgsConstructor;
 public class MedicineServiceImpl implements MedicineService {
 
     private final MedicineRepository medicineRepository;
+    private final UserRepository userRepository;
 
     @Override
     public MedicineDTO saveMedicine(MedicineDTO medicineDTO) {
-        checkNameIfExist(medicineDTO);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado! Email: " + email));
 
-        Medicine medicine = MedicineMapper.toEntity(medicineDTO);// Converter DTO em entidade
+        Medicine medicine = MedicineMapper.toEntity(medicineDTO, user);// Converter DTO em entidade
         Medicine savedMedicine = medicineRepository.save(medicine);// Salvar no repositorio
 
         return MedicineMapper.toDTO(savedMedicine);// Converter a entidade salva de volta para DTO e retornar
@@ -30,7 +38,12 @@ public class MedicineServiceImpl implements MedicineService {
 
     @Override
     public List<MedicineDTO> getAllMedicines() {
-        List<Medicine> medicines = medicineRepository.findAll();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado! Email: " + email));
+
+        List<Medicine> medicines = medicineRepository.findByUser(user);
         return medicines.stream()
                 .map(MedicineMapper::toDTO)
                 .toList();
@@ -40,15 +53,6 @@ public class MedicineServiceImpl implements MedicineService {
     public MedicineDTO updateMedicine(Long id, MedicineDTO medicineDTO) {
         Medicine existingMedicine = medicineRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Medicamento não encontrado! Id: " + id));
-
-        // Verificar se o nome do medicamento já existe para outro registro
-        medicineRepository.findByName(medicineDTO.name())
-                .ifPresent(existing -> {
-                    if (!existing.getId().equals(id)) {
-                        throw new IllegalArgumentException(
-                                "Nome do medicamento já existe! Não pode repetir: " + medicineDTO.name());
-                    }
-                });
 
         existingMedicine.setName(medicineDTO.name());
         existingMedicine.setDescription(medicineDTO.description());
@@ -65,13 +69,5 @@ public class MedicineServiceImpl implements MedicineService {
             throw new RuntimeException("Medicamento cujo id não foi encontrado. Id: " + id);
         }
         medicineRepository.deleteById(id);
-    }
-
-    private void checkNameIfExist(MedicineDTO medicineDTO) {
-        medicineRepository.findByName(medicineDTO.name())
-                .ifPresent(existing -> {
-                    throw new IllegalArgumentException(
-                            "Já existe medicamento com esse nome!! Não repita: " + medicineDTO.name());
-                });
     }
 }
