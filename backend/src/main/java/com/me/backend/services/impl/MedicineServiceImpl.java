@@ -57,6 +57,7 @@ public class MedicineServiceImpl implements MedicineService {
         existingMedicine.setName(medicineDTO.name());
         existingMedicine.setDescription(medicineDTO.description());
         existingMedicine.setDateTime(medicineDTO.dateTime());
+        existingMedicine.setEmailToSend(medicineDTO.emailToSend());
 
         Medicine updateMedicine = medicineRepository.save(existingMedicine);
 
