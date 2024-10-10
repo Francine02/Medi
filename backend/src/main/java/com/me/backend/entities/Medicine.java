@@ -30,6 +30,8 @@ public class Medicine {
     private String name;
     private String description;
     private LocalDateTime dateTime;
+    private String emailToSend;
+    private boolean emailSent;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore

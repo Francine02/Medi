@@ -13,6 +13,7 @@ public class MedicineMapper {
         medicine.setDescription(medicineDTO.description());
         medicine.setDateTime(medicineDTO.dateTime());
         medicine.setUser(user);
+        medicine.setEmailToSend(medicineDTO.emailToSend());
         return medicine;
     }
 
@@ -22,6 +23,7 @@ public class MedicineMapper {
             medicine.getId(), 
             medicine.getName(), 
             medicine.getDescription(), 
-            medicine.getDateTime());
+            medicine.getDateTime(), 
+            medicine.getEmailToSend());
     }
 }

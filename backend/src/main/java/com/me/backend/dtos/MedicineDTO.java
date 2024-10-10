@@ -10,5 +10,6 @@ public record MedicineDTO(
     String name,
     String description,
     @NotBlank(message = "Data não pode ser nulo")
-    LocalDateTime dateTime
+    LocalDateTime dateTime,
+    String emailToSend
 ) {}
