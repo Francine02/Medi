@@ -10,7 +10,7 @@ public class Cors implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry corsRegistry) {
         corsRegistry.addMapping("/**")
                 .allowedOrigins(
-                        "http://localhost:8080",
+                        "http://localhost:8081",
                         "https://medi-f3fk.onrender.com",
                         "https://medi-five-fawn.vercel.app/")
                 .allowedMethods("GET", "POST", "DELETE", "PUT");
