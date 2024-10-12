@@ -20,13 +20,12 @@ public class SendReminderService {
     @Autowired
     private MedicineRepository medicineRepository;
 
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = 3600000)
     public void sendReminderEmails() {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime startWindow = now.minusMinutes(1);
-        LocalDateTime endWindow = now.plusMinutes(1);
 
-        List<Medicine> medicines = medicineRepository.findByDateTimeBetweenAndEmailSentFalse(startWindow, endWindow);
+        List<Medicine> medicines = medicineRepository.findByDateTimeBetweenAndEmailSentFalse(startWindow, now);
 
         for (Medicine medicine : medicines) {
             String subject = "Lembrete: Medicamento a ser tomado";

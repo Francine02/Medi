@@ -13,7 +13,7 @@ public class Cors implements WebMvcConfigurer {
                         "http://localhost:8081",
                         "http://localhost:5173",
                         "https://medi-f3fk.onrender.com",
-                        "https://medi-five-fawn.vercel.app/")
+                        "https://medi-five-fawn.vercel.app")
                 .allowedMethods("GET", "POST", "DELETE", "PUT");
     }
 }
