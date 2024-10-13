@@ -8,24 +8,28 @@ import { useState } from 'react';
 export function Register() {
     const navigate = useNavigate();
 
-    const [email, setEmail] = useState('');
-    const [nome, setNome] = useState('');
-    const [password, setPassword] = useState('');
+    const [newEmail, setNewEmail] = useState('');
+    const [newNome, setNewNome] = useState('');
+    const [newPassword, setNewPassword] = useState('');
 
     const handleLogin = () => navigate("/auth/login");
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         const data = {
-            nome,
-            email,
-            password
+            nome: newNome,
+            email: newEmail,
+            password: newPassword
         }
 
         try {
-            await createAccount(data)
-            alert("Usuário registrado com sucesso!")
-            navigate("/auth/login")
+            const response = await createAccount(data)
+
+            if (response.status === 200) {
+                setTimeout(() => {
+                    navigate('/auth/login')
+                }, 3000)
+            }
         } catch (error) {
             console.log("Erro ao fazer o cadastro: " + error);
         }
@@ -40,22 +44,22 @@ export function Register() {
                     <Input
                         type="text"
                         placeholder="Nome"
-                        value={nome}
-                        onChange={(e) => setNome(e.target.value)} />
+                        value={newNome}
+                        onChange={(e) => setNewNome(e.target.value)} />
 
                     <Input
                         type="email"
                         placeholder="E-mail"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)} />
+                        value={newEmail}
+                        onChange={(e) => setNewEmail(e.target.value)} />
 
                     <Input
                         type="password"
                         placeholder="Senha"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)} />
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)} />
 
-                    <Button />
+                    <Button type="submit" />
                 </form>
                 <p className='pt-10 text-center text-sm font-normal'>Já tem uma conta? <a onClick={handleLogin} className='text-[#8f5cd7] font-medium hover:opacity-85 cursor-pointer'>Entrar</a></p>
             </div>
