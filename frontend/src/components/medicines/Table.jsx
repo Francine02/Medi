@@ -26,7 +26,7 @@ export function Table() {
                     {medicines.map((medicine) => (
                         <tr key={medicine.id} className="bg-[#fffcf2]">
                             <TableContent
-                                id={medicine.id}
+                                medicine={medicine}
                                 name={medicine.name}
                                 hour={medicine.dateTime}
                                 description={medicine.description}
