@@ -34,9 +34,12 @@ export const loginAccount = async (data) => {
     }
 }
 
-export const validateForm = (email, password) => {
+export const validateForm = ({ email, password, nome = null }) => {
     if (!email || !password) {
-        return 'Por favor, preencha todos os campos.'
+        return 'Por favor, preencha todos os campos.';
     }
-    return ''
+    if (nome !== null && (!nome.trim())) {
+        return 'Por favor, preencha o campo nome.'
+    }
+    return '';
 }
