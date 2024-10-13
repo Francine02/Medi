@@ -2,7 +2,7 @@ import bgImage from '../assets/6.png';
 import { Button } from '../components/form/Button';
 import { Input } from '../components/form/Input';
 import { useNavigate } from 'react-router-dom';
-import { createAccount } from '../utils/Account';
+import { createAccount, validateForm } from '../utils/Account';
 import { useState } from 'react';
 
 export function Register() {
@@ -11,11 +11,24 @@ export function Register() {
     const [newEmail, setNewEmail] = useState('');
     const [newNome, setNewNome] = useState('');
     const [newPassword, setNewPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleLogin = () => navigate("/auth/login");
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        const error = validateForm({
+            email: newEmail, 
+            password: newPassword, 
+            nome: newNome
+        })
+
+        if (error) {
+            setErrorMessage(error)
+            return
+        }
+
         const data = {
             nome: newNome,
             email: newEmail,
@@ -58,6 +71,10 @@ export function Register() {
                         placeholder="Senha"
                         value={newPassword}
                         onChange={(e) => setNewPassword(e.target.value)} />
+
+                    {errorMessage && (
+                        <div className="text-red-500 text-sm">{errorMessage}</div>
+                    )}
 
                     <Button type="submit" />
                 </form>

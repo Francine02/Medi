@@ -17,7 +17,7 @@ export function Login() {
     const handleLogin = async (e) => {
         e.preventDefault()
 
-        const error = validateForm(email, password)
+        const error = validateForm({email, password})
         if (error) {
             setErrorMessage(error)
             return
