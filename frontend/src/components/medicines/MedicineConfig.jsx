@@ -12,10 +12,6 @@ export function MedicineConfig({ title }) {
         emailToSend: ""
     })
 
-    const formatToLocalDateTime = (dateTime) => { // Formatar data
-        return new Date(dateTime).toISOString().slice(0, 19)
-    }
-
     useEffect(() => { // Carregar os dados do medicamento nos inputs quando se está editando
         if (isEditing && currentMedicine) {
             setMedicineData({
@@ -38,8 +34,7 @@ export function MedicineConfig({ title }) {
     const handleSubmit = async (e) => { // Salvar medicamento
         e.preventDefault()
         const formattedMedicineData = {
-            ...medicineData,
-            dateTime: formatToLocalDateTime(medicineData.dateTime),
+            ...medicineData
         }
 
         try {
