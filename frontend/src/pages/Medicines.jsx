@@ -1,5 +1,6 @@
 import bgImage from '../assets/5.png';
 import { Button } from '../components/medicines/Button';
+import { Logout } from '../components/medicines/Logout';
 import { MedicineConfig } from '../components/medicines/MedicineConfig';
 import { Table } from '../components/medicines/Table';
 import { useMedicineContext } from "../context/MedicineContext";
@@ -20,6 +21,8 @@ export function Medicines() {
                     />
                 </div>
             )}
+
+            <Logout/>
 
             <Button />
         </div>
