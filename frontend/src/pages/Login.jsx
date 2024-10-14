@@ -30,6 +30,7 @@ export function Login() {
 
             if (response.status === 200) {
                 navigate('/medicines')
+                location.reload()
             }
         } catch (error) {
             console.log("Erro ao fazer o login: " + error)
