@@ -20,10 +20,10 @@ public class SendReminderService {
     @Autowired
     private MedicineRepository medicineRepository;
 
-    @Scheduled(fixedRate = 3600000)
+    @Scheduled(fixedRate = 600000)
     public void sendReminderEmails() {
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime startWindow = now.minusMinutes(1);
+        LocalDateTime startWindow = now.minusMinutes(10);
 
         List<Medicine> medicines = medicineRepository.findByDateTimeBetweenAndEmailSentFalse(startWindow, now);
 
