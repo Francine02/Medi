@@ -29,6 +29,10 @@ Este projeto é uma aplicação Full Stack desenvolvida para auxiliar usuários 
   <img src="./prints/mobile5.png" width="200" /><img src="./prints/mobile6.png" width="200" />
 </div>
 
+## 🎥 Demonstração em Vídeo
+
+Para visualizar o funcionamento do projeto: [clique aqui](https://www.linkedin.com/posts/francine-ccruz_react-vite-tailwindcss-activity-7251701581534949376-1lrK?utm_source=share&utm_medium=member_desktop)
+
 ## 🚀 Tecnologias Utilizadas
 ### 💻 Frontend
 + React - Biblioteca para construção de interfaces de usuário.
