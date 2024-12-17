@@ -68,4 +68,4 @@ Para evitar problemas com o limite de requisições no Render, a verificação p
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests para melhorias ou correções.
 
 ## 📝 Licença
-Este projeto é licenciado sob a MIT License.
+Este projeto é licenciado sob a [MIT License](LICENSE).
